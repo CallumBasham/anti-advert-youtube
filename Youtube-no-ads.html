@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Video Search and Play</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    color: #fff;
+  }
+  #search-container, #results, #player-container {
+    padding: 20px;
+    margin: 10px;
+  }
+  #results {
+    flex: 1;
+    overflow-y: auto;
+  }
+  #results div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #6200ea;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #424242;
+  }
+  #results div:hover {
+    background-color: #6200ea;
+  }
+  #player {
+    width: 100%;
+    max-width: 560px;
+  }
+  #layout {
+    display: flex;
+  }
+  #player-container {
+    flex: 1;
+    background-color: #424242;
+  }
+</style>
+</head>
+<body onload="loadRecommendedVideos()">
+
+<div id="search-container">
+  <input onkeydown="if(event.keyCode==13) searchVideos()" type="text" id="query" placeholder="Search YouTube" style="width: 80%;">
+  <button onclick="searchVideos()" style="width: 18%; background-color: #6200ea; border: none; color: #fff;">Search</button>
+</div>
+
+<div id="layout">
+  <div style="height: 400px;" id="results"></div>
+  <div id="player-container">
+    <iframe id="player" height="315" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+
+
+ async function loadRecommendedVideos() {
+    var response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=US&videoCategoryId=0&maxResults=10&key=<USER-API-KEY-HERE>`);
+    var data = await response.json();
+    displayVideos(data.items);
+  }
+
+  function displayVideos(items) {
+    var resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+    items.forEach(item => {
+      var videoId = item.id; 
+      var title = item.snippet.title;
+      var thumbnailUrl = item.snippet.thumbnails.default.url;
+      var resultItem = document.createElement('div');
+      resultItem.innerHTML = `<img src="${thumbnailUrl}" alt="${title} thumbnail"><br>${title}`;
+      resultItem.onclick = () => playVideo(videoId);
+      resultsDiv.appendChild(resultItem);
+    });
+  }
+
+  async function searchVideos() {
+    var query = document.getElementById('query').value;
+    var response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query}&type=video&key=<USER-API-KEY-HERE>`);
+    var data = await response.json();
+    var resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+    data.items.forEach(item => {
+      var videoId = item.id.videoId;
+      var title = item.snippet.title;
+      var thumbnailUrl = item.snippet.thumbnails.default.url;
+      var resultItem = document.createElement('div');
+      resultItem.innerHTML = `<img src="${thumbnailUrl}" alt="${title} thumbnail"><br>${title}`;
+      resultItem.onclick = () => playVideo(videoId);
+      resultsDiv.appendChild(resultItem);
+    });
+  }
+
+  function playVideo(videoId) {
+    document.getElementById('player').src = "https://www.youtube.com/embed/" + videoId;
+  }
+  
+   
+  
+</script>
+
+</body>
+</html>
