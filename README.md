@@ -1,6 +1,8 @@
 # Ad-Free Youtube Viewer
 Developed solely for educational purposes, this solution enables ad-free YouTube video playback by leveraging the YouTube Data API with a user-provided Google API Key. Acknowledging the generous provision of free API keys by companies like Google for developmental purposes, it's crucial to exercise responsible usage.
 
+![Example of Web Page](./images/live-example.PNG)
+
 ## Operational Overview
 The process involves querying the YouTube API using a user-generated API key linked to their account. The application fetches video URLs and plays them seamlessly in an embedded IFrame, offering an uncomplicated way to enjoy YouTube content without ads.
 
@@ -18,7 +20,5 @@ Be mindful of the free-tier API key's limitations, with a daily request cap. Exc
 2. You've inserted the API key incorrectly into the .html and broke the formatting.
 3. The API key isn't valid
 4. Youtube have updated their systems so this method no longer works
-
-5. ![Example of Web Page](./images/live-example.PNG)
 
 **Note: This project is intended for educational purposes only. Ensure compliance with ethical guidelines and responsible use of API keys in your development activities.**
