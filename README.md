@@ -19,6 +19,6 @@ Be mindful of the free-tier API key's limitations, with a daily request cap. Exc
 3. The API key isn't valid
 4. Youtube have updated their systems so this method no longer works
 
-5. ![Example of Web Page](./images/What-it-looks-like.PNG)
+5. ![Example of Web Page](./images/live-example.PNG)
 
 **Note: This project is intended for educational purposes only. Ensure compliance with ethical guidelines and responsible use of API keys in your development activities.**
