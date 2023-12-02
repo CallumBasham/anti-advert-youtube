@@ -4,7 +4,7 @@ Purely for educational purposes. A method to watch YouTube videos and bypass the
 ## Set Up
 1. Download the .html file
 2. Follow the [steps](https://scribehow.com/embed/How_to_Enable_YouTube_Data_API_v3_and_Generate_API_Key__so6BO10dQmC4lZPPR-vwuw?skipIntro=true) to acquire a Youtube API key. 
-3. Copy the API key and paste into the .html where it states "<USER-API-KEY-HERE>" (the crocodile <> brackets are not required) 
+3. Copy the API key and paste into the .html where it states "\<USER-API-KEY-HERE>" (the crocodile <> brackets are not required) 
 4. Open the .html file in a browser (tested in Chrome) and you can search & play youtube videos without adverts.
 
 ## Troubleshooting
